@@ -7,7 +7,6 @@ public class SSOService {
     private boolean isLoggedIn;
 
     public SSOService(boolean isLoggedIn) {
-
         this.isLoggedIn = isLoggedIn;
     }
 
