@@ -4,37 +4,19 @@
 <div class="narrative"><h2>Narrative:</h2>
 <div class="element inOrderTo"><span class="keyword inOrderTo">As a</span> user</div>
 <div class="element asA"><span class="keyword asA">I want to</span> learn about the benefits of Single Sign on</div>
-<div class="element iWantTo"><span class="keyword iWantTo">So that</span> I can decide to log in or register</div>
+<div class="element iWantTo"><span class="keyword iWantTo">So that</span> I can decide to log in, register or dismiss</div>
 </div>
 <div class="scenario">
 <h2>Scenario: Display Single Sign On prompt dialog</h2>
-<div class="examples">
-<h3>Examples:</h3>
-<div class="step">Given I am a &lt;loggedIn&gt; user</div>
-<div class="step">When I start the app</div>
-<div class="step">Then I &lt;should&gt; see the Single SignOn prompt dialog</div>
-<table>
-<thead>
-<tr>
-<th>loggedIn</th><th>should</th></tr>
-</thead>
-<tbody>
-<tr>
-<td>true</td><td>false</td></tr>
-<tr>
-<td>false</td><td>true</td></tr>
-</tbody>
-</table>
-
-<h3 class="example">Example: {loggedIn=true, should=false}</h3>
-<div class="step successful">Given I am a <span class="step parameter">true</span> user</div>
-<div class="step successful">When I start the app</div>
-<div class="step successful">Then I <span class="step parameter">false</span> see the Single SignOn prompt dialog</div>
-
-<h3 class="example">Example: {loggedIn=false, should=true}</h3>
-<div class="step successful">Given I am a <span class="step parameter">false</span> user</div>
-<div class="step successful">When I start the app</div>
-<div class="step successful">Then I <span class="step parameter">true</span> see the Single SignOn prompt dialog</div>
-</div>
+<div class="step successful">Given I want to show the prompt</div>
+<div class="step successful">When I request to show the prompt</div>
+<div class="step successful">Then I should see the dialog</div>
+<div class="step successful">Then see a list of the benefits of signing up for an account</div>
+<div class="step pending">Then see a button to sign into an existing account <span class="keyword pending">(PENDING)</span></div>
+<div class="step pending">Then see a button to register for a new account <span class="keyword pending">(PENDING)</span></div>
+<div class="step pending">Then see a close button <span class="keyword pending">(PENDING)</span></div>
+<div class="step pending">Then see a maybe later button <span class="keyword pending">(PENDING)</span></div>
+<div class="step pending">Then I have a url to sign in <span class="keyword pending">(PENDING)</span></div>
+<div class="step pending">Then I have a url to register <span class="keyword pending">(PENDING)</span></div>
 </div>
 </div>
