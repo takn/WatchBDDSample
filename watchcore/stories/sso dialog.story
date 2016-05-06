@@ -10,5 +10,5 @@ Then I <should> see the Single SignOn prompt dialog
 
 Examples:
 | loggedIn | should |
-| true     | true   |
-| false    | false  |
+| true     | false  |
+| false    | true   |

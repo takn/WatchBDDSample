@@ -28,21 +28,21 @@
 </thead>
 <tbody>
 <tr>
-<td>true</td><td>true</td></tr>
+<td>true</td><td>false</td></tr>
 <tr>
-<td>false</td><td>false</td></tr>
+<td>false</td><td>true</td></tr>
 </tbody>
 </table>
 
-<h3 class="example">Example: {loggedIn=true, should=true}</h3>
+<h3 class="example">Example: {loggedIn=true, should=false}</h3>
 <div class="step successful">Given I am a <span class="step parameter">true</span> user</div>
-<div class="step pending">When I start the app <span class="keyword pending">(PENDING)</span></div>
-<div class="step pending">Then I &lt;should&gt; see the Single SignOn prompt dialog <span class="keyword pending">(PENDING)</span></div>
+<div class="step successful">When I start the app</div>
+<div class="step successful">Then I <span class="step parameter">false</span> see the Single SignOn prompt dialog</div>
 
-<h3 class="example">Example: {loggedIn=false, should=false}</h3>
+<h3 class="example">Example: {loggedIn=false, should=true}</h3>
 <div class="step successful">Given I am a <span class="step parameter">false</span> user</div>
-<div class="step pending">When I start the app <span class="keyword pending">(PENDING)</span></div>
-<div class="step pending">Then I &lt;should&gt; see the Single SignOn prompt dialog <span class="keyword pending">(PENDING)</span></div>
+<div class="step successful">When I start the app</div>
+<div class="step successful">Then I <span class="step parameter">true</span> see the Single SignOn prompt dialog</div>
 </div>
 </div>
 </div>
