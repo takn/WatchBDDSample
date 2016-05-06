@@ -1,0 +1,72 @@
+<html>
+<head>
+<title>sso dialog</title>
+<style type="text/css" media="all">
+@import url( "./style/jbehave-core.css" );
+</style>
+</head>
+<body>
+<div class="story">
+<h1></h1>
+<div class="path">file:stories/sso dialog.story</div>
+<div class="narrative"><h2>Narrative:</h2>
+<div class="element inOrderTo"><span class="keyword inOrderTo">As a</span> user</div>
+<div class="element asA"><span class="keyword asA">I want to</span> learn about the benefits of Single Sign on</div>
+<div class="element iWantTo"><span class="keyword iWantTo">So that</span> I can decide to log in or register</div>
+</div>
+<div class="scenario">
+<h2>Scenario: Display Single Sign On prompt dialog</h2>
+<div class="examples">
+<h3>Examples:</h3>
+<div class="step">Given I am a &lt;loggedIn&gt; user</div>
+<div class="step">When I start the app</div>
+<div class="step">Then I &lt;should&gt; see the Single SignOn prompt dialog</div>
+<table>
+<thead>
+<tr>
+<th>loggedIn</th><th>should</th></tr>
+</thead>
+<tbody>
+<tr>
+<td>true</td><td>true</td></tr>
+<tr>
+<td>false</td><td>false</td></tr>
+</tbody>
+</table>
+
+<h3 class="example">Example: {loggedIn=true, should=true}</h3>
+<div class="step successful">Given I am a <span class="step parameter">true</span> user</div>
+<div class="step pending">When I start the app <span class="keyword pending">(PENDING)</span></div>
+<div class="step pending">Then I &lt;should&gt; see the Single SignOn prompt dialog <span class="keyword pending">(PENDING)</span></div>
+
+<h3 class="example">Example: {loggedIn=false, should=false}</h3>
+<div class="step successful">Given I am a <span class="step parameter">false</span> user</div>
+<div class="step pending">When I start the app <span class="keyword pending">(PENDING)</span></div>
+<div class="step pending">Then I &lt;should&gt; see the Single SignOn prompt dialog <span class="keyword pending">(PENDING)</span></div>
+</div>
+</div>
+</div>
+
+</body>
+<!--  SyntaxHighlighter resources:  should be included at end of body -->
+<link rel="stylesheet" type="text/css" href="./style/sh-3.0.83/shCore.css"/>
+<link rel="stylesheet" type="text/css" href="./style/sh-3.0.83/shThemeRDark.css"/>
+<script language="javascript" src="./js/sh-3.0.83/shCore.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushBash.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushCss.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushDiff.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushGroovy.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushJava.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushJScript.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushPlain.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushPython.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushRuby.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushScala.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushXml.js"></script>
+<script language="javascript" src="./js/shBrushBdd.js"></script>
+<script type="text/javascript">
+    SyntaxHighlighter.defaults['gutter'] = false;
+    SyntaxHighlighter.defaults['toolbar'] = false;    
+    SyntaxHighlighter.all();
+</script>
+</html>
