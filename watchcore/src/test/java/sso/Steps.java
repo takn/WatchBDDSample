@@ -43,7 +43,6 @@ public class Steps {
 
     @When("I request to show the prompt")
     public void whenIRequestToShowThePrompt() {
-        // PENDING
         ssoPromptModel = ssoPromptService.showPrompt();
     }
 
