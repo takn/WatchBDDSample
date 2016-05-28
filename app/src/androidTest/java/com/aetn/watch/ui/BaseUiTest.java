@@ -1,19 +1,15 @@
 package com.aetn.watch.ui;
 
-import android.support.test.internal.util.AndroidRunnerParams;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.AndroidTestCase;
 
-import com.aetn.watch.activities.UiTestactivity;
-
-import junit.framework.Assert;
+import com.aetn.watch.UiTestHarnessActivity;
 
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.model.InitializationError;
 
 /**
  * Uses a test harness activity to instantiate screens for ui testing
@@ -23,8 +19,8 @@ import org.junit.runners.model.InitializationError;
 public class BaseUiTest extends AndroidTestCase {
 
     @Rule
-    public ActivityTestRule<UiTestactivity> mActivityRule =
-            new ActivityTestRule<UiTestactivity>(UiTestactivity.class);
+    public ActivityTestRule<UiTestHarnessActivity> mActivityRule =
+            new ActivityTestRule<UiTestHarnessActivity>(UiTestHarnessActivity.class, true, true);
 
 
     @Before
@@ -36,10 +32,10 @@ public class BaseUiTest extends AndroidTestCase {
 
     @Test
     public void correctSetup() {
-        Assert.assertNotNull(getActivity());
+        assertTrue(getActivity() instanceof UiTestHarnessActivity);
     }
 
-    protected UiTestactivity getActivity() {
+    protected UiTestHarnessActivity getActivity() {
         if (mActivityRule == null) {
             return null;
         }
