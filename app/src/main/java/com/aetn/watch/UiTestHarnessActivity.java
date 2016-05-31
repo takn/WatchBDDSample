@@ -20,6 +20,7 @@ public class UiTestHarnessActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //TODO make this activity a placeholder and have it inflate any view passed in
         //these 'generic' views can either go in a base class or handled case by case
         emptyText = (TextView) findViewById(R.id.empty_text);
         loadingPb = (ProgressBar) findViewById(R.id.loading_pb);
