@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import sso.Steps;
+import samples.sso.Steps;
 
 /**
  * Created by nelsonramirez on 5/6/16.

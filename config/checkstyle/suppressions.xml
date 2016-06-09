@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE suppressions PUBLIC
+        "-//Puppy Crawl//DTD Suppressions 1.1//EN"
+        "http://www.puppycrawl.com/dtds/suppressions_1_1.dtd">
+
+<suppressions>
+    <!-- Suppress checks on tests -->
+    <suppress checks="[a-zA-Z0-9]*" files="[a-zA-Z0-9]+Test.java"/>
+    <suppress checks="[a-zA-Z0-9]*" files="\w*BuildConfig\.java" />
+    <suppress checks="[a-zA-Z0-9]*" files="\w*R\.java" />
+
+    <!-- Suppress unnecessary and grey area checks -->
+    <suppress checks="MagicNumberCheck" files=".+.java" />
+    <suppress checks="HideUtilityClassConstructorCheck" files=".+.java" />
+    <suppress checks="AnonInnerLengthCheck" files=".+.java" />
+    <suppress checks="BooleanExpressionComplexityCheck" files=".+.java" />
+    <suppress checks="CyclomaticComplexityCheck" files=".+.java" />
+    <suppress checks="RedundantThrowsCheck" files=".+.java" />
+    <suppress checks="VisibilityModifierCheck" files=".+.java" />
+    <suppress checks="DesignForExtensionCheck" files=".+.java" />
+    <suppress checks="ConstantNameCheck" files=".+.java" />
+    <suppress checks="FinalClassCheck" files=".+.java" />
+    <suppress checks="HiddenFieldCheck" files=".+.java" />
+    <suppress checks="InnerAssignmentCheck" files=".+.java" />
+    <suppress checks="InnerTypeLastCheck" files=".+.java" />
+    <suppress checks="LocalFinalVariableNameCheck" files=".+.java" />
+    <suppress checks="LocalVariableNameCheck" files=".+.java" />
+    <suppress checks="MemberNameCheck" files=".+.java" />
+    <suppress checks="ModifierOrderCheck" files=".+.java" />
+    <suppress checks="ParameterAssignmentCheck" files=".+.java" />
+    <suppress checks="StaticVariableNameCheck" files=".+.java" />
+    <suppress checks="WhitespaceAroundCheck" files=".+.java" />
+    <suppress checks="MissingSwitchDefaultCheck" files=".+.java" />
+    <suppress checks="JavadocStyleCheck" files=".+.java" />
+    <suppress checks="JavadocMethodCheck" files=".+.java" />
+    <suppress checks="WhitespaceAfterCheck" files=".+.java" />
+    <suppress checks="OperatorWrapCheck" files=".+.java" />
+    <suppress checks="ParameterNumberCheck" files=".+.java" />
+    <suppress checks="RightCurlyCheck" files=".+.java" />
+    <suppress checks="ArrayTypeStyleCheck" files=".+.java" />
+
+
+</suppressions>

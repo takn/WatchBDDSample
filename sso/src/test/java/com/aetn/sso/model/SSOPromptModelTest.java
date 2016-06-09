@@ -1,7 +1,7 @@
 package com.aetn.sso.model;
 
 import com.aetn.watch.core.DataProvider;
-import com.aetn.watch.core.sso.boundaries.ISSOPromptModel;
+import com.aetn.watch.core.samples.boundaries.sso.ISSOPromptModel;
 
 import org.junit.Before;
 import org.junit.Test;

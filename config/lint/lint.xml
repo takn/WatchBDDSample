@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><!--suppress XmlUnboundNsPrefix -->
+<lint>
+    <issue id="UnusedResources">
+        <ignore path="build" />
+    </issue>
+    <issue id="ScrollViewSize" severity="ignore" />
+    <issue id="ContentDescription" severity="ignore" />
+    <issue id="InvalidPackage" severity="ignore" />
+    <issue id="InconsistentLayout" severity="ignore" />
+    <issue id="InlinedApi" severity="ignore" />
+    <issue id="Typos" severity="ignore" />
+    <issue id="InflateParams" severity="ignore" />
+    <issue id="RtlEnabled" severity="ignore" />
+    <issue id="SetJavaScriptEnabled" severity="ignore" />
+    <issue id="UseCompoundDrawables" severity="ignore" />
+    <issue id="Overdraw" severity="ignore" />
+    <issue id="IconColors" severity="ignore" />
+    <issue id="IconDipSize" severity="ignore" />
+    <issue id="IconLocation" severity="ignore" />
+    <issue id="RtlHardcoded" severity="ignore" />
+    <issue id="RelativeOverlap" severity="ignore" />
+    <issue id="ViewConstructor" severity="ignore" />
+    <issue id="IconMissingDensityFolder" severity="ignore" />
+    <issue id="ClickableViewAccessibility" severity="ignore" />
+    <issue id="IconDensities" severity="ignore" />
+    <issue id="PluralsCandidate" severity="ignore" />
+    <issue id="WrongConstant" severity="ignore" />
+</lint>

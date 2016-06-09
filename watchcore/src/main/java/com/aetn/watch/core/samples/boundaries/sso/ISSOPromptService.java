@@ -1,4 +1,4 @@
-package com.aetn.watch.core.sso.boundaries;
+package com.aetn.watch.core.samples.boundaries.sso;
 
 /**
  * Created by nelsonramirez on 5/6/16.

@@ -52,3 +52,11 @@ dependencies {
 //        exclude module: 'recyclerview-v7'
 //    }
 }
+
+task findbugs(overwrite: true, type: FindBugs, dependsOn: 'assemble') {
+    ignoreFailures = shouldIgnoreFailures;
+    excludeFilter file('../config/findbugs/findbugs-filter.xml')
+    classes = fileTree('build/intermediates/classes/')
+    source = fileTree('src/main/java')
+    classpath = files()
+}

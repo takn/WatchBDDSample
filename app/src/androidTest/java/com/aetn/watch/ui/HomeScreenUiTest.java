@@ -6,7 +6,7 @@ import android.test.suitebuilder.annotation.LargeTest;
 import android.view.View;
 
 import com.aetn.watch.R;
-import com.aetn.watch.app.viewmodel.VIEW_STATE;
+import com.aetn.watch.app.viewmodel.VIEWSTATE;
 import com.aetn.watch.home.HomeViewModel;
 
 import org.junit.Assert;
@@ -31,7 +31,7 @@ public class HomeScreenUiTest extends BaseUiTest {
     @Test
     public void viewDisplaysCorrectEmptyState() {
         HomeViewModel homeViewModel = new HomeViewModel();
-        Assert.assertEquals("emptyState", VIEW_STATE.EMPTY, homeViewModel.getCurrentViewState());
+        Assert.assertEquals("emptyState", VIEWSTATE.EMPTY, homeViewModel.getCurrentViewState());
         getActivity().setViewModel(homeViewModel);
         String emptyText = getActivity().getString(R.string.home_empty);
         onView(withId(R.id.empty_text)).check(matches(withText(emptyText)));
@@ -49,8 +49,8 @@ public class HomeScreenUiTest extends BaseUiTest {
     @Test
     public void viewDisplaysCorrectLoadingState() {
         HomeViewModel homeViewModel = new HomeViewModel();
-        homeViewModel.setViewState(VIEW_STATE.LOADING);
-        Assert.assertEquals("loadingState", VIEW_STATE.LOADING, homeViewModel.getCurrentViewState());
+        homeViewModel.setViewState(VIEWSTATE.LOADING);
+        Assert.assertEquals("loadingState", VIEWSTATE.LOADING, homeViewModel.getCurrentViewState());
         getActivity().setViewModel(homeViewModel);
         onView(withId(R.id.loading_pb)).check(matches(isDisplayed()));
 
@@ -63,8 +63,8 @@ public class HomeScreenUiTest extends BaseUiTest {
     @Test
     public void viewDisplaysCorrectErrorState() {
         HomeViewModel homeViewModel = new HomeViewModel();
-        homeViewModel.setViewState(VIEW_STATE.ERROR);
-        Assert.assertEquals("errorState", VIEW_STATE.ERROR, homeViewModel.getCurrentViewState());
+        homeViewModel.setViewState(VIEWSTATE.ERROR);
+        Assert.assertEquals("errorState", VIEWSTATE.ERROR, homeViewModel.getCurrentViewState());
         getActivity().setViewModel(homeViewModel);
         onView(withId(R.id.empty_text)).check(matches(isDisplayed()));
 
@@ -80,8 +80,8 @@ public class HomeScreenUiTest extends BaseUiTest {
     @Test
     public void viewDisplaysCorrectNormalState() {
         HomeViewModel homeViewModel = new HomeViewModel();
-        homeViewModel.setViewState(VIEW_STATE.NORMAL);
-        Assert.assertEquals("normal state", VIEW_STATE.NORMAL, homeViewModel.getCurrentViewState());
+        homeViewModel.setViewState(VIEWSTATE.NORMAL);
+        Assert.assertEquals("normal state", VIEWSTATE.NORMAL, homeViewModel.getCurrentViewState());
         getActivity().setViewModel(homeViewModel);
         onView(withId(R.id.updated_text)).check(matches(isDisplayed()));
 

@@ -1,7 +1,7 @@
-package sso;
+package samples.sso;
 
-import com.aetn.watch.core.sso.boundaries.ISSOPromptService;
-import com.aetn.watch.core.sso.boundaries.ISSOPromptModel;
+import com.aetn.watch.core.samples.boundaries.sso.ISSOPromptService;
+import com.aetn.watch.core.samples.boundaries.sso.ISSOPromptModel;
 
 import org.jbehave.core.annotations.BeforeStory;
 import org.jbehave.core.annotations.Given;
@@ -32,7 +32,8 @@ public class Steps {
     @BeforeStory
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        when(mockedPromptModel.getBenefitsList()).thenReturn(Arrays.asList(new String[]{"one", "two"}));
+        when(mockedPromptModel.getBenefitsList()).thenReturn(
+                Arrays.asList(new String[]{"one", "two"}));
         when(ssoPromptService.showPrompt()).thenReturn(mockedPromptModel);
     }
 

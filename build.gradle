@@ -5,19 +5,12 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.1.0'
+        classpath 'com.android.tools.build:gradle:2.1.2'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
 }
-
-allprojects {
-    repositories {
-        jcenter()
-    }
-}
-
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
@@ -41,3 +34,131 @@ ext {
     rulesVersion = '0.4.1'
     espressoVersion = '2.2.2'
 }
+
+//QUALITY CHECKS:
+allprojects {
+    apply plugin: 'findbugs'
+    apply plugin: 'pmd'
+    apply plugin: 'checkstyle'
+    com.android.ddmlib.DdmPreferences.setTimeOut(60000)
+    repositories {
+        jcenter()
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+    ext {
+        //look for a local version first, then for a passed in value (i.e from build server)
+        //allows configuration for what the build should do when quality check failures happen
+        shouldIgnoreFailures = Boolean.valueOf(
+                project.hasProperty('ignore_failures') ?
+                        project.property('ignore_failures').toString() : "false")
+        preDexLibs = !project.hasProperty('disablePreDex')
+    }
+
+//    configurations.all {
+//        resolutionStrategy.force 'com.android.support:support-annotations:22.2.1'
+//    }
+}
+
+subprojects {
+    //TODO the classes dir is overriden in android projects because the default classes output path
+    // is different than java projects.. figure out a way to change it from here, instead of overwriting
+    task findbugs(type: FindBugs, dependsOn: 'assemble') {
+        ignoreFailures = shouldIgnoreFailures;
+        excludeFilter file('../config/findbugs/findbugs-filter.xml')
+        classes = fileTree('build/classes/')
+        source = fileTree('src/main/java')
+        classpath = files()
+    }
+
+    tasks.withType(FindBugs) {
+        /*
+        Using xsl stylesheets from the FindBugs project doesn't create the HTML reports the same way
+        the gradle findbugs plugin does. For convenience, the default will be to generate the results
+        as HTML, with the option to use a project property to generate XML instead.
+         */
+
+        ext {
+            findbugsGenerateXml = Boolean.valueOf(
+                    project.hasProperty('findbugs_xml_report') ? project.property('findbugs_xml_report') : false);
+        }
+        reports {
+            html.enabled = !findbugsGenerateXml
+            xml.enabled = findbugsGenerateXml
+        }
+
+    }
+
+/*
+PMD
+ */
+    task pmd(type: Pmd) {
+        ruleSetFiles = files('../config/pmd/ruleset.xml')
+        ruleSets = []
+        ignoreFailures = shouldIgnoreFailures
+        source = fileTree('src')
+    }
+
+    tasks.withType(Pmd) {
+
+        reports {
+            xml.enabled = true
+            html.enabled = true
+        }
+    }
+
+    /*
+    CHECKSTYLE
+     */
+    task checkstyle(type: Checkstyle) {
+        configFile file('../config/checkstyle/checkstyle-android.xml')
+        //plugin doesn't seem to honor this currently
+        ignoreFailures = shouldIgnoreFailures
+        showViolations false
+        source 'src'
+        include '**/*.java'
+        classpath = files()
+        reports {
+            xml {
+                enabled = true
+                destination "build/reports/checkstyle/checkstyle.xml"
+            }
+        }
+    }
+
+    tasks.withType(Checkstyle) {
+
+        doLast {
+            //create an HTML page with our results as well
+            def reportFile = "$buildDir/reports/checkstyle/checkstyle.xml"
+            def stylesheet = "../config/checkstyle/checkstyle-noframes-sorted.xsl"
+            def htmlOutput = "$buildDir/reports/checkstyle/checkstyle.html"
+
+            if (file(reportFile).exists()) {
+                ant.xslt(in: reportFile,
+                        style: stylesheet,
+                        out: htmlOutput
+                )
+
+                if (new File(reportFile).getText('UTF-8').contains("<error ")) {
+                    throw new GradleException("There were checkstyle warnings! " +
+                            "For more info check $reportFile")
+                } else {
+                    println "checkstyle passed report: $buildDir/reports/checkstyle/checkstyle.html"
+                }
+            }
+        }
+    }
+
+    task qualityCheck {
+        tasks["qualityCheck"].dependsOn('findbugs', 'pmd', 'checkstyle')
+    }
+}
+
+
+task runAllUnitTests(dependsOn: [':app:test', ':sso:test']) {
+    description 'Run unit tests on all modules'
+}
+//TODO could probably iterate through each project instead
+task runAllQualityChecks(dependsOn: [':app:qualityCheck', 'sso:qualityCheck', ':watchcore:qualityCheck'])

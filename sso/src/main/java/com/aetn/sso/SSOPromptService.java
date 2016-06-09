@@ -1,8 +1,7 @@
 package com.aetn.sso;
 
-import com.aetn.sso.model.SSOPromptModel;
-import com.aetn.watch.core.sso.boundaries.ISSOPromptModel;
-import com.aetn.watch.core.sso.boundaries.ISSOPromptService;
+import com.aetn.watch.core.samples.boundaries.sso.ISSOPromptModel;
+import com.aetn.watch.core.samples.boundaries.sso.ISSOPromptService;
 
 /**
  * Created by nelsonramirez on 5/6/16.

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<ruleset name="WatchRules"
+    xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+    <description>Maker PMD rules</description>
+
+    <rule ref="rulesets/java/basic.xml">
+            <exclude name="UselessParentheses"/>
+    </rule>
+    <rule ref="rulesets/java/braces.xml"/>
+    <rule ref="rulesets/java/android.xml"/>
+
+    <rule ref="rulesets/java/strings.xml">
+        <exclude name="AvoidDuplicateLiterals" />
+    </rule>
+
+    <rule ref="rulesets/java/strings.xml/AvoidDuplicateLiterals">
+        <priority>3</priority>
+        <properties>
+            <property name="skipAnnotations" value="true"/>
+        </properties>
+    </rule>
+    <exclude-pattern>.*/src/main/res/.*</exclude-pattern>
+    <exclude-pattern>.*/src/main/proguard.*</exclude-pattern>
+    <exclude-pattern>.*AndroidManifest.xml.*</exclude-pattern>
+</ruleset>
