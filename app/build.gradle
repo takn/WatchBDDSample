@@ -5,17 +5,66 @@ android {
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "com.aetn.watch"
         minSdkVersion 16
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+//    signingConfigs {
+//        qa {
+//            keyAlias 'aetest'
+//            keyPassword 'aetest'
+//            storeFile file('/Users/cumisnic/AndroidStudio/AETest/test.jks')
+//            storePassword 'aetest'
+//        release {
+//            keyAlias 'aetest'
+//            keyPassword 'aetest'
+//            storeFile file('/Users/cumisnic/AndroidStudio/AETest/test.jks')
+//            storePassword 'aetest'
+//        }
+//    }
+
+    // Overlay sequence (note: directories do not need creating if they are not used)
+    //
+    // priority:    main      -> flavor   -> type          -> variant (flavor+type)
+    //
+    // aeDebug   -> /src/main +  /src/ae/ +  /src/debug/   +  /src/aeDebug
+    // aeQa      -> /src/main +  /src/ae/ +  /src/qa/      +  /src/aeQa
+    // aeRelease -> /src/main +  /src/ae/ +  /src/release/ +  /src/aeRelease
+    //
+    // java/        directories are compiled together: careful not duplicate classes!
+    // manifests    are merged to a single manifest.xml in priority order
+    // res/values/  contents of files with same name are merged.  Contents are overwritten in priority order
+    // res/         files are merged (not contents) in priority order
+    // asset/       files are merged (not contents) in priority order
+    //
     buildTypes {
+        debug {
+            minifyEnabled false
+            applicationIdSuffix ".debug"
+        }
+        qa {
+            minifyEnabled false
+            applicationIdSuffix ".qa"
+//            signingConfig signingConfigs.qa
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            signingConfig signingConfigs.release
+        }
+    }
+    productFlavors {
+        ae {
+            applicationId 'com.aetn.aetv.watchv3'
+        }
+        history {
+            applicationId 'com.aetn.history.watchv3'
+        }
+        lifetime {
+            applicationId 'com.aetn.history.watchv3'
         }
     }
 }
