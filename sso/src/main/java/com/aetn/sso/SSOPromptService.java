@@ -7,6 +7,7 @@ import com.aetn.watch.core.samples.boundaries.sso.ISSOPromptService;
  * Created by nelsonramirez on 5/6/16.
  */
 public class SSOPromptService implements ISSOPromptService {
+    @Override
     public ISSOPromptModel showPrompt() {
         return createPromptModel();
     }
