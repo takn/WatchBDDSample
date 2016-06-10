@@ -1,5 +1,4 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-
 buildscript {
     repositories {
         jcenter()
@@ -14,7 +13,6 @@ buildscript {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
-
 ext {
     // Sdk and tools
     minSdkVersion = 10
@@ -41,6 +39,11 @@ allprojects {
     apply plugin: 'pmd'
     apply plugin: 'checkstyle'
     com.android.ddmlib.DdmPreferences.setTimeOut(60000)
+
+    checkstyle {
+        sourceSets = []
+    }
+
     repositories {
         jcenter()
         maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
@@ -64,6 +67,19 @@ allprojects {
 subprojects {
     //TODO the classes dir is overriden in android projects because the default classes output path
     // is different than java projects.. figure out a way to change it from here, instead of overwriting
+
+
+    subprojects.findAll { subproject ->
+        subproject.pluginManager.hasPlugin('com.android.application')
+    }.each { subproject ->
+        println subproject.name + ' has android plugin::'
+//        additionalSourceDirs files((Set<File>) subproject.sourceSets.main.allJava.srcDirs)
+//        additionalClassDirs ((FileCollection) subproject.sourceSets.main.output)
+//        if (subproject.pluginManager.hasPlugin('jacoco')) {
+//            executionData subproject.tasks.jacocoTestReport.executionData
+//        }
+    }
+
     task findbugs(type: FindBugs, dependsOn: 'assemble') {
         ignoreFailures = shouldIgnoreFailures;
         excludeFilter file('../config/findbugs/findbugs-filter.xml')
@@ -73,19 +89,9 @@ subprojects {
     }
 
     tasks.withType(FindBugs) {
-        /*
-        Using xsl stylesheets from the FindBugs project doesn't create the HTML reports the same way
-        the gradle findbugs plugin does. For convenience, the default will be to generate the results
-        as HTML, with the option to use a project property to generate XML instead.
-         */
-
-        ext {
-            findbugsGenerateXml = Boolean.valueOf(
-                    project.hasProperty('findbugs_xml_report') ? project.property('findbugs_xml_report') : false);
-        }
         reports {
-            html.enabled = !findbugsGenerateXml
-            xml.enabled = findbugsGenerateXml
+            html.enabled = true
+            xml.enabled = false
         }
 
     }
@@ -103,7 +109,7 @@ PMD
     tasks.withType(Pmd) {
 
         reports {
-            xml.enabled = true
+            xml.enabled = false
             html.enabled = true
         }
     }
@@ -151,10 +157,37 @@ PMD
         }
     }
 
+    /*
+    JACOCO
+     */
+//    jacocoTestReport {
+//        additionalSourceDirs = files(sourceSets.main.allSource.srcDirs)
+//        sourceDirectories = files(sourceSets.main.allSource.srcDirs)
+//        classDirectories =  files(sourceSets.main.output)
+//        reports {
+//            html.enabled = true
+//            xml.enabled = true
+//            csv.enabled = false
+//        }
+//    }
+
     task qualityCheck {
         tasks["qualityCheck"].dependsOn('findbugs', 'pmd', 'checkstyle')
     }
 }
+
+//task jacocoRootReport(type: org.gradle.testing.jacoco.tasks.JacocoReport) {
+//    dependsOn = subprojects.test
+//    additionalSourceDirs = files(subprojects.sourceSets.main.allSource.srcDirs)
+//    sourceDirectories = files(subprojects.sourceSets.main.allSource.srcDirs)
+//    classDirectories =  files(subprojects.sourceSets.main.output)
+//    executionData = files(subprojects.jacocoTestReport.executionData)
+//    reports {
+//        html.enabled = true
+//        xml.enabled = true
+//        csv.enabled = false
+//    }
+//}
 
 
 task runAllUnitTests(dependsOn: [':app:test', ':sso:test']) {
