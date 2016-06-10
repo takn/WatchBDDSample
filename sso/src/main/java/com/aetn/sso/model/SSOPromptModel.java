@@ -10,19 +10,18 @@ import java.util.ArrayList;
  */
 public class SSOPromptModel implements ISSOPromptModel {
     private ArrayList<String> benefitsList = new ArrayList<>();
+    //TODO Inject later
+    DataProvider dataProvider;
+
+    public SSOPromptModel(DataProvider dataProvider) {
+        this.dataProvider = dataProvider;
+    }
 
     public DataProvider getDataProvider() {
         return dataProvider;
     }
 
     public void setDataProvider(DataProvider dataProvider) {
-        this.dataProvider = dataProvider;
-    }
-
-    //TODO Inject later
-    DataProvider dataProvider;
-
-    public SSOPromptModel(DataProvider dataProvider) {
         this.dataProvider = dataProvider;
     }
 
