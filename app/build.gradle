@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply from: '../jacoco-android.gradle'
 
 android {
     compileSdkVersion 23
@@ -41,9 +42,11 @@ android {
     // asset/       files are merged (not contents) in priority order
     //
     buildTypes {
+
         debug {
             minifyEnabled false
             applicationIdSuffix ".debug"
+            testCoverageEnabled true
         }
         qa {
             minifyEnabled false
