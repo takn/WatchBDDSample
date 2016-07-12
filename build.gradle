@@ -159,4 +159,11 @@ task runAllUnitTests(dependsOn: [':app:test', ':sso:test']) {
     description 'Run unit tests on all modules'
 }
 //TODO could probably iterate through each project instead
+def dependsArr = subprojects.collect { projectEntry ->
+    if (projectEntry)
+        ":$projectEntry.name:qualityCheck"
+}
+
+println 'array list: ' + dependsArr
+
 task runAllQualityChecks(dependsOn: [':app:qualityCheck', 'sso:qualityCheck', ':watchcore:qualityCheck'])
