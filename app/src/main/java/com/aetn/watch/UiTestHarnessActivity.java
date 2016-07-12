@@ -57,6 +57,7 @@ public class UiTestHarnessActivity extends AppCompatActivity {
                         updatedText.setVisibility(View.VISIBLE);
                         updatedText.setText(homeViewModel.getUpdatedTextResId());
                         break;
+                    //tmp
                 }
 
             }
